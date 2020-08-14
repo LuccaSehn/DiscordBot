@@ -4,6 +4,7 @@ const config = require("./config.json");
 
 client.on("ready", () => {
     console.log(`Bot foi iniciado`);
+
     const exampleEmbed = new Discord.MessageEmbed()
                                     .setColor('#ff9933')
                                     .setAuthor('BOT', 'https://i.imgur.com/qTLWhgb.jpg')
@@ -25,15 +26,25 @@ client.on('messageReactionAdd', (reaction, user) => {
     if(user.bot) return;
 
     if(reaction.emoji.name === '🚀') {
-        client.channels.cache.get('739179981179060255').send(`!changeNickname ${user.id} 🚀`)
+        client.channels.cache.get('739179981179060255').send(`!changeNickname/${user.id}/${user.username}/🚀`).then(msg => {
+            msg.delete({ timeout: 1000 })
+        });
     } else if(reaction.emoji.name === '❌') {
-        client.channels.cache.get('739179981179060255').send(`!changeNickname ${user.id} ❌`)
+        client.channels.cache.get('739179981179060255').send(`!changeNickname/${user.id}/${user.username}/❌`).then(msg => {
+            msg.delete({ timeout: 1000 })
+        });
     } else if(reaction.emoji.name === '🍴') {
-        client.channels.cache.get('739179981179060255').send(`!changeNickname ${user.id} 🍴`)
+        client.channels.cache.get('739179981179060255').send(`!changeNickname/${user.id}/${user.username}/🍴`).then(msg => {
+            msg.delete({ timeout: 1000 })
+        });
     } else if(reaction.emoji.name === '🚽') {
-        client.channels.cache.get('739179981179060255').send(`!changeNickname ${user.id} 🚽`)
+        client.channels.cache.get('739179981179060255').send(`!changeNickname/${user.id}/${user.username}/🚽`).then(msg => {
+            msg.delete({ timeout: 1000 })
+        });
     } else if(reaction.emoji.name === '⏸') {
-        client.channels.cache.get('739179981179060255').send(`!changeNickname ${user.id} ⏸`)
+        client.channels.cache.get('739179981179060255').send(`!changeNickname/${user.id}/${user.username}/⏸`).then(msg => {
+            msg.delete({ timeout: 1000 })
+        });
     }
 });
 
