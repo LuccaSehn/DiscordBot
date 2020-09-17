@@ -10,6 +10,7 @@ tags:
   externalDocs:
     description: URL
     url: /ContactCenter/ajax.php
+- name: New Tag 2
 paths:
   /create:
     post:
