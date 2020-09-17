@@ -1,0 +1,174 @@
+openapi: 3.0.1
+info:
+  title: RCX API
+  description: balblabal
+  version: "0.1"
+servers:
+- url: http://orangev3.local:99
+tags:
+- name: Script
+  externalDocs:
+    description: URL
+    url: /ContactCenter/ajax.php
+paths:
+  /create:
+    post:
+      tags:
+      - Script
+      description: Method used to create a new script
+      operationId: createPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+            examples:
+              getScript:
+                value: |-
+                  {
+                      "action": "getScript",
+                      "script_id": 401
+                  }
+              listScripts:
+                value: |-
+                  {
+                      "action": "listScripts"
+                  }
+              deleteScript:
+                value: |-
+                  {
+                      "action": "deleteScript",
+                      "script_ids": [401, 402]
+                  }
+              createScript:
+                value: |-
+                  {
+                      "action": "createScript",
+                      "name": "Script Name Example",
+                      "type": "email",
+                      "script_content": "Script Content Example"
+                  }
+              updateScript:
+                value: |-
+                  {
+                      "action": "updateScript",
+                      "script_id": 401,
+                      "name": "Script Name Example",
+                      "type": "email",
+                      "script_content": "Script Content Example"
+                  }
+      responses:
+        "200":
+          description: '{"status":"success","id":154}'
+      servers:
+      - url: http://orangev3.local:99
+      x-swagger-router-controller: Script
+    servers:
+    - url: http://orangev3.local:99
+  /list:
+    post:
+      tags:
+      - Script
+      description: Method used to list all scripts
+      operationId: listPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_1'
+            examples:
+              listScripts:
+                value: |-
+                  {
+                      "action": "listScripts"
+                  }
+      responses:
+        "200":
+          description: '{"status":"success","id":154}'
+      servers:
+      - url: http://orangev3.local:99
+      x-swagger-router-controller: Script
+    servers:
+    - url: http://orangev3.local:99
+  /update:
+    post:
+      tags:
+      - Script
+      description: Method used to edit a script
+      operationId: updatePOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_2'
+            examples:
+              updateScript:
+                value: |-
+                  {
+                      "action": "updateScript",
+                      "script_id": 401,
+                      "name": "Script Name Example",
+                      "type": "email",
+                      "script_content": "Script Content Example"
+                  }
+      responses:
+        "200":
+          description: '{"status":"success","id":154}'
+      servers:
+      - url: http://orangev3.local:99
+      x-swagger-router-controller: Script
+    servers:
+    - url: http://orangev3.local:99
+components:
+  schemas:
+    body:
+      type: object
+      properties:
+        script_ids:
+          type: array
+          items:
+            type: integer
+        script_content:
+          type: string
+        name:
+          type: string
+        action:
+          type: string
+        script_id:
+          type: integer
+        type:
+          type: string
+    body_1:
+      type: object
+      properties:
+        script_ids:
+          type: array
+          items:
+            type: integer
+        script_content:
+          type: string
+        name:
+          type: string
+        action:
+          type: string
+        script_id:
+          type: integer
+        type:
+          type: string
+    body_2:
+      type: object
+      properties:
+        script_ids:
+          type: array
+          items:
+            type: integer
+        script_content:
+          type: string
+        name:
+          type: string
+        action:
+          type: string
+        script_id:
+          type: integer
+        type:
+          type: string
