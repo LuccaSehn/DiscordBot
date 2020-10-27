@@ -1,6 +1,8 @@
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const server_id = '';
+const channel_id = '';
 
 client.on("ready", () => {
     console.log(`Bot foi iniciado`);
@@ -12,19 +14,19 @@ client.on('messageReactionAdd', (reaction, user) => {
     reaction.users.remove(user.id);
 
     if(reaction.emoji.name === '🚀') {
-        client.channels.cache.get('server_id').send(`!changeNickname/${user.id}/${user.username}/🚀`).then(msg => {
+        client.channels.cache.get(server_id).send(`!changeNickname/${user.id}/${user.username}/🚀`).then(msg => {
             msg.delete({ timeout: 1000 })
         });
     } else if(reaction.emoji.name === '❌') {
-        client.channels.cache.get('server_id').send(`!changeNickname/${user.id}/${user.username}/❌`).then(msg => {
+        client.channels.cache.get(server_id).send(`!changeNickname/${user.id}/${user.username}/❌`).then(msg => {
             msg.delete({ timeout: 1000 })
         });
     } else if(reaction.emoji.name === '🍴') {
-        client.channels.cache.get('server_id').send(`!changeNickname/${user.id}/${user.username}/🍴`).then(msg => {
+        client.channels.cache.get(server_id).send(`!changeNickname/${user.id}/${user.username}/🍴`).then(msg => {
             msg.delete({ timeout: 1000 })
         });
     } else if(reaction.emoji.name === '⏸') {
-        client.channels.cache.get('server_id').send(`!changeNickname/${user.id}/${user.username}/⏸`).then(msg => {
+        client.channels.cache.get(server_id).send(`!changeNickname/${user.id}/${user.username}/⏸`).then(msg => {
             msg.delete({ timeout: 1000 })
         });
     }
@@ -43,14 +45,14 @@ client.on("message", message => {
         const args = message.content.slice('!').trim().split("/")
         const command = args.shift().toLowerCase();
 
-        if(command == "!start_charlie") {
+        if(command == "!runBot") {
             message.channel.bulkDelete(100);
-            startCharlie();
+            runBot();
         }
 
         if (command === "!changenickname") {
             if (args[2] == '🍴' || args[2] == '⏸') {
-                message.guild.members.cache.get(args[0]).voice.setChannel('channel_id');
+                message.guild.members.cache.get(args[0]).voice.setChannel(channel_id);
             } else if (args[2] == '❌') {
                 message.guild.members.cache.get(args[0]).send('Não se esqueça de pausar suas tarefas no RunRun. Bom descanço.');
             }
@@ -63,15 +65,15 @@ client.on("message", message => {
 
 client.login("NzM4MDkzMDYzMDc0ODczMzY0.XyG4uw.XP8l5iwPRU_buVEPmsP8DMCoie0");
 
-function startCharlie() {
+function runBot() {
     const exampleEmbed = new Discord.MessageEmbed()
                                     .setColor('#ff9933')
-                                    .setAuthor('BOT', client.guilds.resolve('server_id').members.resolve('user_id').user.avatarURL())
+                                    .setAuthor('BOT', client.guilds.resolve(server_id).members.resolve('user_id').user.avatarURL())
                                     .addField('Lista de comandos', 'Reaja com 🚀 quando for iniciar o trabalho\nReaja com ❌ quando for finalizar o trabalho\nReaja com 🍴 quando for comer algo\nReaja com ⏸ em outros casos\n', true)
-                                    .setThumbnail(client.guilds.resolve('server_id').members.resolve('user_id').user.avatarURL())
+                                    .setThumbnail(client.guilds.resolve(server_id).members.resolve('user_id').user.avatarURL())
                                     .setTimestamp()
 
-    client.channels.cache.get('server_id').send(exampleEmbed).then((message) => {
+    client.channels.cache.get(server_id).send(exampleEmbed).then((message) => {
         message.react("🚀")
         message.react("❌")
         message.react("🍴")
